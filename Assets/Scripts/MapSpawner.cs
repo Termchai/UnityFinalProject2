@@ -11,13 +11,16 @@ public class MapSpawner : NetworkBehaviour
     public int height;
     public int width;
 
+    public float timeEl;
+    public float timeInterval = 2f;
+
     private Node[] nodes;
 
     public static string nodeColorString;
 
     public override void OnStartServer()
     {
-
+        timeEl = timeInterval;
         nodes = new Node[height * width];
 
         Debug.Log(nodeColorString);
@@ -67,6 +70,17 @@ public class MapSpawner : NetworkBehaviour
         {
             //StartCoroutine(UpdateDataBase(2f));
         }
+    }
+
+    public void Update()
+    {
+        if(timeEl < 0)
+        {
+            timeEl = timeInterval;
+            CmdUpdateDataBase();
+            Debug.Log("Update Database");
+        }
+        timeEl -= Time.deltaTime;
     }
 
     [Command]

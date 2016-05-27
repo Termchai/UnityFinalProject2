@@ -16,7 +16,7 @@ public class Node : NetworkBehaviour {
         if (!isServer || color == this.color)
             return;
         Setup(color);
-        mapSpawner.CmdUpdateDataBase();
+        //mapSpawner.CmdUpdateDataBase();
     }
 
     public void Setup(Color color)
